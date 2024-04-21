@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+    <button onclick="sayHello"> coountelskdjff</button>
+    <script>
+        function sayHello(){
+            console.log("hello");
+        }
+        let state = {
+            count : 0,
+        }
+        function onBtnPress(){
+            state.count++;
+            btnComponentReRender();
+        }
+        function btnComponentReRender(){
+            document.getElementById("parent").innerHTML = ""; // if not present everytime a new button will be present on the screen
+            let btn = btnComponent(state.count);
+            document.getElementById("parent").appendChild(btn);
+        }
+        function btnComponent(count){
+            let btn = document.createElement("button");
+            btn.innerHTML = `counter ${count}`;
+            btn.setAttribute("onclick", "onBtnPress()"); // don't do onBtnPress() here without enclosing in string
+            return btn;
+
+            // <button onclick = "onBtnPress()">
+            //      counter 2
+            // </button>
+        }
+
+        btnComponentReRender();
+    </script>
+</body>
+</html>

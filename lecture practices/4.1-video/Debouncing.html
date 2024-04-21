@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<br lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Debouncing is a programming practice used to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the web page. In other words, it limits the rate at which a function gets invoked</p>
+    <p>Throtling is also the same , when debouncing is done on the backend to not process every request coming rapidly instead responding the request coming after a certain period of time that is called so</p>
+
+    <input id="num1" type="text" oninput="debouncingBackendSum()" placeholder="Enter number a"> <br><br>
+    <input id="num2" type="text" oninput="debouncingBackendSum()" placeholder="Enter number b"><br><br>
+
+    <p id="output"></p>
+
+    <script>
+        let timeout;
+        function debouncingBackendSum() {
+            // this thing clears the timeout
+            clearTimeout(timeout)
+            timeout = setTimeout(function () {
+                backendSum()
+            }, 1000);
+        }
+
+        async function backendSum() {
+            let num1 = document.body.querySelector("#num1").value
+            let num2 = document.body.querySelector("#num2").value
+            const element = document.getElementById('output')
+
+            // fetch(`https://sum-server.100xdevs.com/sum?a=${num1}&b=${num2}`)
+            //     .then((response) => {
+            //         response.text()
+            //             .then((data) => {
+            //                 console.log(data);
+            //             })
+            //     })
+            
+            // to use this run the backend.js file present in the current directory
+            const fetchData = await fetch(`http://localhost:3000/?a=${num1}&b=${num2}`)
+
+            const output = await fetchData.text()
+            // console.log(output);
+            element.innerHTML = output;
+        }
+
+        function sum() {
+            let num1 = document.body.querySelector("#num1").value
+            let num2 = document.body.querySelector("#num2").value
+            const element = document.getElementById('output')
+            element.innerHTML = parseInt(num1) + parseInt(num2);
+        }
+    </script>
+</body>
+
+</html>

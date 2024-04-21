@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<br lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="num1" type="text" oninput="backendSum()" placeholder="Enter number a"> <br><br>
+    <input id="num2" type="text" oninput="backendSum()" placeholder="Enter number b"><br><br>
+
+    <!-- <input id="num1" type="text"  placeholder="Enter number a"> <br><br>
+    <input id="num2" type="text" placeholder="Enter number b"><br><br>
+
+    <button onclick="backendSum()">Sum</button> -->
+
+    <p id="output"></p>
+
+    <script>
+
+        async function backendSum() {
+            let num1 =document.body.querySelector("#num1").value
+            let num2 = document.body.querySelector("#num2").value
+            const element = document.getElementById('output')
+            
+            // to use this run the backend.js file present in the current directory
+            const fetchData = await fetch(`http://localhost:3000/?a=${num1}&b=${num2}`)
+
+            const output = await fetchData.text()
+            console.log(output);
+            element.innerHTML = output;
+        }
+
+        function sum() {
+            let num1 = document.body.querySelector("#num1").value
+            let num2 = document.body.querySelector("#num2").value
+            const element = document.getElementById('output')
+            element.innerHTML = parseInt(num1) + parseInt(num2);
+        }
+    </script>
+</body>
+
+</html>

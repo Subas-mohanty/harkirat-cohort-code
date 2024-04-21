@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn" onclick="counter()">counter 0</button>
+    <script>
+        function counter(){
+            const button = document.getElementById("btn").innerHTML;
+            const data = button.split(" ")[1]; // getting the number
+            let counter = parseInt(data) + 1; // parsing it to number from string
+            // let counter = parseInt(data) ++; // this will give error, either use the above one of the below one
+            // counter++;
+            document.getElementById("btn").innerHTML =`counter ${counter}`;
+        }
+    </script>
+</body>
+</html>

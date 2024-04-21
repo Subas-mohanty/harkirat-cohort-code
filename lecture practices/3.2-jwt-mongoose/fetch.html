@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getData(){
+            // fecth function return a promise, so we have to use .then
+            fetch("https://fakerapi.it/api/v1/persons")
+            .then(function(data){
+                // this data.json() also return a promise
+                data.json().then(function (response){
+                    console.log(response)
+                })
+            })
+        }
+        async function getData2(){
+            // we can use axios so that we don't have to use data.json(), its usecase is like this, check in the axios.js file
+            // const axios = require("axios")
+            // const data = axios.get("https://fakerapi.it/api/v1/persons")
+            // console.log(data)
+            // axios
+            const data = await fetch("https://fakerapi.it/api/v1/persons");
+            const response = await data.json();
+            console.log(response)
+            // const data = await (await fetch("https://fakerapi.it/api/v1/persons")).json()
+            // console.log(data)
+        }
+    </script>
+    <button onclick="getData2()">Get Data</button>
+</body>
+</html>

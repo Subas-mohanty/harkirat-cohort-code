@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// creating table in prisma, this is same as doing this
+// CREATE TABLE User (
+//   id SERIAL PRIMARY KEY NOT NULL
+// )
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  firstName String?
+  lastName String?
+  password String 
+  // if we want to add any new column here than we add it here but it doesn't get added in the ../migration/*/migration.sql directly . It get stored in a new migration file it doesn't get added in the original migration file so it is easier to keep a track of changes
+
+  phoneNumber String?
+  countryCode String?
+}
+
+model todo {
+  id Int @id @default(autoincrement())
+  title String
+  description String?
+  done Boolean @default(false)
+  user_id Int
+}
