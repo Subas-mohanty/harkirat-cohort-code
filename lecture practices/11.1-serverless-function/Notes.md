@@ -1,6 +1,6 @@
 ## So the first thing is why we should use CloudFlare ?
 - The answer is, cloudfare provide a serverless function.
-- It charges the user per request, if the number of request is less then the amount the developer need to give is low or it is high. Not a certain amount, no matter what is the number of requests on your server.
+- It charges the user per request, if the number of request is less, then the amount the developer need to give is low or it is high. Not a certain amount, no matter what is the number of requests on your server.
 
 
 ## Why `cloudflare` is not directly used by developer ?
