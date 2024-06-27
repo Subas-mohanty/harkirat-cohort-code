@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Provider from "@/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* we can't do this becuase it is a server component and we can't make it a client component using use client because of the metadata present */}
+        {/* <SessionProvider>
+           {children}
+        </SessionProvider> */}
+        <Provider>
+          {children}
+        </Provider>
+        </body>
     </html>
   );
 }
